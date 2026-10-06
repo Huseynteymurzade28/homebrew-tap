@@ -1,0 +1,126 @@
+name: Bump
+
+# tuiba, flerp and Kizamu release on their own schedules, and nothing in their
+# repositories writes to this one. Once a day this checks each for a newer
+# version, rewrites the formula's URLs and checksums, tests it the way Tests
+# does, and pushes the ones that pass. pokeductor is not checked: its own
+# release workflow writes its formula.
+#
+# A formula that fails its tests, or a version this cannot take on its own
+# (Kizamu needing a Zig package the formula does not pin), is left as it was
+# and fails the run, so GitHub's failure email is the reminder to look. The
+# other formulae are still pushed.
+on:
+  schedule:
+    - cron: "23 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bump
+
+jobs:
+  check:
+    name: Check for new versions
+    runs-on: ubuntu-latest
+    outputs:
+      formulae: ${{ steps.bump.outputs.formulae }}
+      manual: ${{ steps.bump.outputs.manual }}
+    steps:
+      - uses: actions/checkout@v5
+      - id: bump
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 -I .github/bump/bump.py
+      - if: steps.bump.outputs.formulae != '[]'
+        uses: actions/upload-artifact@v4
+        with:
+          name: formulae
+          path: Formula/
+
+  test:
+    name: ${{ matrix.formula }} (${{ matrix.os }})
+    needs: check
+    if: needs.check.outputs.formulae != '[]'
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+        formula: ${{ fromJSON(needs.check.outputs.formulae) }}
+    steps:
+      - uses: Homebrew/actions/setup-homebrew@main
+        with:
+          stable: false
+      - uses: actions/download-artifact@v5
+        with:
+          name: formulae
+          path: bumped
+      - name: Use the rewritten formula
+        run: cp bumped/${{ matrix.formula }}.rb "$(brew --repository huseynteymurzade28/tap)/Formula/"
+      - run: brew install --verbose huseynteymurzade28/tap/${{ matrix.formula }}
+      - run: brew test huseynteymurzade28/tap/${{ matrix.formula }}
+      - run: brew audit --strict huseynteymurzade28/tap/${{ matrix.formula }}
+      # One marker per formula and platform that passed, so the push job can
+      # tell which formulae passed everywhere without the matrix's single
+      # overall result.
+      - run: touch passed
+      - uses: actions/upload-artifact@v4
+        with:
+          name: passed-${{ matrix.formula }}-${{ matrix.os }}
+          path: passed
+
+  push:
+    name: Push what passed
+    needs: [check, test]
+    if: ${{ !cancelled() && needs.check.result == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - if: needs.check.outputs.formulae != '[]'
+        uses: actions/download-artifact@v5
+        with:
+          name: formulae
+          path: bumped
+      # Nothing to download when every test failed, which is reported below.
+      - if: needs.check.outputs.formulae != '[]'
+        continue-on-error: true
+        uses: actions/download-artifact@v5
+        with:
+          pattern: passed-*
+          path: passed
+      - name: Commit and push
+        env:
+          FORMULAE: ${{ needs.check.outputs.formulae }}
+          MANUAL: ${{ needs.check.outputs.manual }}
+        run: |
+          failed=$(jq -r '.[]' <<< "$MANUAL")
+          for formula in $(jq -r '.[]' <<< "$FORMULAE"); do
+            if [ -d "passed/passed-$formula-macos-latest" ] && [ -d "passed/passed-$formula-ubuntu-latest" ]; then
+              cp "bumped/$formula.rb" Formula/
+              version=$(grep -m1 -oE '/v[0-9]+\.[0-9]+\.[0-9]+[/.]' "Formula/$formula.rb" | tr -d '/v' | sed 's/\.$//')
+              git add "Formula/$formula.rb"
+              git -c user.name="Huseynteymurzade28" \
+                  -c user.email="159074293+Huseynteymurzade28@users.noreply.github.com" \
+                  commit -m "$formula $version"
+            else
+              echo "::error::$formula did not pass on both platforms; left as it was."
+              failed="$failed $formula"
+            fi
+          done
+          # Run by hand from another branch, this is a rehearsal: the commits
+          # are made and shown, and main is left alone.
+          if git diff --quiet "origin/$GITHUB_REF_NAME" HEAD; then
+            echo "Nothing to push."
+          elif [ "$GITHUB_REF_NAME" = "main" ]; then
+            git push origin HEAD:main
+          else
+            git log --oneline "origin/$GITHUB_REF_NAME..HEAD"
+            echo "Not main: leaving these unpushed."
+          fi
+          if [ -n "${failed// }" ]; then
+            echo "::error::Needs a look:$failed"
+            exit 1
+          fi
