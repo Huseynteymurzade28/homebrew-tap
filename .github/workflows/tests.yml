@@ -1,0 +1,28 @@
+name: Tests
+
+# Every formula is installed, tested and audited on both platforms Homebrew
+# runs on, for each pull request and each push to main. Pushes include the
+# ones pokeductor's release workflow makes, so a formula written by a release
+# is checked here as well as before it was pushed.
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  formula:
+    name: ${{ matrix.formula }} (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+        formula: [pokeductor, tuiba, flerp, kizamu]
+    steps:
+      - uses: Homebrew/actions/setup-homebrew@main
+        with:
+          stable: false
+      - run: brew install --verbose huseynteymurzade28/tap/${{ matrix.formula }}
+      - run: brew test huseynteymurzade28/tap/${{ matrix.formula }}
+      - run: brew audit --strict huseynteymurzade28/tap/${{ matrix.formula }}
