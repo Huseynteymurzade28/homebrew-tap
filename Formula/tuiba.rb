@@ -1,7 +1,6 @@
 class Tuiba < Formula
   desc "Game Boy Advance emulator running in your terminal"
   homepage "https://github.com/Huseynteymurzade28/tuiba"
-  version "0.10.0"
   license "MIT"
 
   on_macos do
