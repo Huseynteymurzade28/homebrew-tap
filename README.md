@@ -1,14 +1,22 @@
 # homebrew-tap
 
-Homebrew formulae for [pokeductor](https://github.com/Huseynteymurzade28/pokeductor),
-a terminal Pokedex and evolution analyzer.
+Homebrew formulae for my terminal tools, for macOS and Linux.
 
 ```bash
-brew install huseynteymurzade28/tap/pokeductor
+brew tap huseynteymurzade28/tap
+brew install pokeductor
 ```
 
-The formula installs the prebuilt release binary for macOS (Apple silicon and
-Intel) and Linux (x86_64 and ARM), with shell completions and the man page.
-pokeductor's release workflow writes it on every tagged release, after
-installing and testing it on macOS and Linux, so nothing here is edited by
-hand.
+or in one step, `brew install huseynteymurzade28/tap/<formula>`.
+
+| Formula | What it is | Installs |
+|---|---|---|
+| [`pokeductor`](https://github.com/Huseynteymurzade28/pokeductor) | Terminal Pokedex and evolution analyzer | Prebuilt binary, completions, man page |
+| [`tuiba`](https://github.com/Huseynteymurzade28/tuiba) | Game Boy Advance emulator in the terminal | Prebuilt binary |
+| [`flerp`](https://github.com/Huseynteymurzade28/flerp) | TUI for exploring and analyzing text, PDFs and images | Built from source with Rust |
+| [`kizamu`](https://github.com/Huseynteymurzade28/Kizamu) | Terminal typing test: WPM and accuracy | Built from source with Zig 0.16 |
+
+`pokeductor` is written by its own release workflow on every tagged release,
+so its formula is not edited here by hand. The others are updated here when a
+new version is released. Every formula is installed, tested and audited on
+macOS and Linux for each pull request.
