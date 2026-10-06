@@ -8,7 +8,7 @@ class Pomtex < Formula
 
   depends_on "crystal" => :build
   depends_on "bdw-gc"
-  depends_on "openssl@3"
+  depends_on "openssl@4"
   depends_on "pcre2"
   depends_on "xz"
 
