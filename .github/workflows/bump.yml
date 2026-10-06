@@ -1,8 +1,8 @@
 name: Bump
 
-# tuiba, flerp and Kizamu release on their own schedules, and nothing in their
-# repositories writes to this one. Once a day this checks each for a newer
-# version, rewrites the formula's URLs and checksums, tests it the way Tests
+# tuiba, flerp, Kizamu and pomtex release on their own schedules, and nothing
+# in their repositories writes to this one. Once a day this checks each for a
+# newer version, rewrites the formula's URLs and checksums, tests it the way Tests
 # does, and pushes the ones that pass. pokeductor is not checked: its own
 # release workflow writes its formula.
 #

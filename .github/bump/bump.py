@@ -33,6 +33,7 @@ FORMULAE = {
     "tuiba": ("tuiba", "release"),
     "flerp": ("flerp", "tag"),
     "kizamu": ("Kizamu", "release"),
+    "pomtex": ("pomtex", "release"),
 }
 
 SEMVER_TAG = re.compile(r"^v(\d+)\.(\d+)\.(\d+)$")

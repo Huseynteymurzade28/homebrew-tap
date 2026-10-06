@@ -18,7 +18,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [macos-latest, ubuntu-latest]
-        formula: [pokeductor, tuiba, flerp, kizamu]
+        formula: [pokeductor, tuiba, flerp, kizamu, pomtex]
     steps:
       - uses: Homebrew/actions/setup-homebrew@main
         with:
