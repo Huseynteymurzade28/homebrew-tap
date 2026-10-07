@@ -15,6 +15,7 @@ or in one step, `brew install huseynteymurzade28/tap/<formula>`.
 | [`tuiba`](https://github.com/Huseynteymurzade28/tuiba) | Game Boy Advance emulator in the terminal | Prebuilt binary |
 | [`flerp`](https://github.com/Huseynteymurzade28/flerp) | TUI for exploring and analyzing text, PDFs and images | Built from source with Rust |
 | [`kizamu`](https://github.com/Huseynteymurzade28/Kizamu) | Terminal typing test: WPM and accuracy | Built from source with Zig 0.16 |
+| [`pomtex`](https://github.com/Huseynteymurzade28/pomtex) | On-demand LaTeX: fetches CTAN packages as documents need them | Built from source with Crystal, completions, man page |
 
 Nothing here is bumped by hand. `pokeductor` is written by its own release
 workflow on every tagged release. For the others, the Bump workflow checks
