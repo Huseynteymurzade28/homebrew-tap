@@ -23,6 +23,11 @@ jobs:
       - uses: Homebrew/actions/setup-homebrew@main
         with:
           stable: false
+      # Homebrew fails to pour openssl@4 (crystal's dependency) in the same run
+      # that upgrades an outdated ca-certificates, because that run holds the
+      # lock on openssl@3: "process has already locked .../Cellar/openssl@3".
+      # Upgrading ca-certificates on its own first avoids it.
+      - run: brew upgrade ca-certificates || true
       - run: brew install --verbose huseynteymurzade28/tap/${{ matrix.formula }}
       - run: brew test huseynteymurzade28/tap/${{ matrix.formula }}
       - run: brew audit --strict huseynteymurzade28/tap/${{ matrix.formula }}
