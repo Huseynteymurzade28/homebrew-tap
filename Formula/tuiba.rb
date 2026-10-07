@@ -5,23 +5,23 @@ class Tuiba < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/Huseynteymurzade28/tuiba/releases/download/v0.10.0/tuiba-v0.10.0-aarch64-apple-darwin.tar.gz"
-      sha256 "d98157e21a8275c439615130de222168b4c69d649c61c1059e0636779f64e8ef"
+      url "https://github.com/Huseynteymurzade28/tuiba/releases/download/v0.11.0/tuiba-v0.11.0-aarch64-apple-darwin.tar.gz"
+      sha256 "b82868a240493d05bc89b96f88d39982d465a7c2168f2d673285023649bf662e"
     end
     on_intel do
-      url "https://github.com/Huseynteymurzade28/tuiba/releases/download/v0.10.0/tuiba-v0.10.0-x86_64-apple-darwin.tar.gz"
-      sha256 "da383c3a82105281d8cb44026a7e34996a7df21f2db938fbd9bddc9b8059ce61"
+      url "https://github.com/Huseynteymurzade28/tuiba/releases/download/v0.11.0/tuiba-v0.11.0-x86_64-apple-darwin.tar.gz"
+      sha256 "500937950bc81cc2e9a8b6d55bca80be44798d1728c028f23da6c30bc2b329d5"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/Huseynteymurzade28/tuiba/releases/download/v0.10.0/tuiba-v0.10.0-aarch64-unknown-linux-gnu.tar.gz"
-      sha256 "1abb7b12657d4784cb1b90487b355ca9b66f04ede8d8d4c16564266e31df7ccc"
+      url "https://github.com/Huseynteymurzade28/tuiba/releases/download/v0.11.0/tuiba-v0.11.0-aarch64-unknown-linux-gnu.tar.gz"
+      sha256 "bc18ba44e6fd30441e556c321e4e0957c17ccba5d93a24e6e5560cf4c486603d"
     end
     on_intel do
-      url "https://github.com/Huseynteymurzade28/tuiba/releases/download/v0.10.0/tuiba-v0.10.0-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "03eae313431bc87a45ddb72c71205ead9b0260f367faacc364b48725e1c7b602"
+      url "https://github.com/Huseynteymurzade28/tuiba/releases/download/v0.11.0/tuiba-v0.11.0-x86_64-unknown-linux-gnu.tar.gz"
+      sha256 "c66eee32892d0fcdead018918e111767284754e3e3b631b7cc133f522c5f88aa"
     end
 
     # The Linux build links ALSA for sound and libudev for gamepads.
