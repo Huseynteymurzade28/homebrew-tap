@@ -1,8 +1,8 @@
 class Pomtex < Formula
   desc "On-demand LaTeX: portable TeX kernel that installs CTAN packages when needed"
   homepage "https://github.com/Huseynteymurzade28/pomtex"
-  url "https://github.com/Huseynteymurzade28/pomtex/archive/refs/tags/v0.3.3.tar.gz"
-  sha256 "9697738a1fe3d8706e0ee79d3a99b4be17825c6a38dbe93516e612ae033445b3"
+  url "https://github.com/Huseynteymurzade28/pomtex/archive/refs/tags/v0.4.0.tar.gz"
+  sha256 "90561441abae808e5f8f8de355c8162c3971a62fea3564cb4c89b5e0d2e60d31"
   license "MIT"
   head "https://github.com/Huseynteymurzade28/pomtex.git", branch: "main"
 
