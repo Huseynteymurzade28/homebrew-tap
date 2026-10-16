@@ -1,4 +1,4 @@
-# Written by pokeductor's release workflow for v0.6.0. Edits here are
+# Written by pokeductor's release workflow for v0.7.0. Edits here are
 # overwritten by the next release.
 class Pokeductor < Formula
   desc "Terminal Pokedex and evolution analyzer"
@@ -7,23 +7,23 @@ class Pokeductor < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/Huseynteymurzade28/pokeductor/releases/download/v0.6.0/pokeductor-v0.6.0-aarch64-apple-darwin.tar.gz"
-      sha256 "4e2745a4e0f191d585a328029511933eaf2c0555855591bd71198880ceba3815"
+      url "https://github.com/Huseynteymurzade28/pokeductor/releases/download/v0.7.0/pokeductor-v0.7.0-aarch64-apple-darwin.tar.gz"
+      sha256 "8d610fef12ee10de34820fddcb44b903ea2d0b3cc731e2c160ecbcdd11c37141"
     end
     on_intel do
-      url "https://github.com/Huseynteymurzade28/pokeductor/releases/download/v0.6.0/pokeductor-v0.6.0-x86_64-apple-darwin.tar.gz"
-      sha256 "5516a92aaa6910eef20072c8ca4edb2ed59e94c047e07560dfeba02d2f764dd2"
+      url "https://github.com/Huseynteymurzade28/pokeductor/releases/download/v0.7.0/pokeductor-v0.7.0-x86_64-apple-darwin.tar.gz"
+      sha256 "bf7976c5c8aec485995ee14f300420c5764b16b48bf628d4f6d62beaa5bbc4cb"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/Huseynteymurzade28/pokeductor/releases/download/v0.6.0/pokeductor-v0.6.0-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "dcf6fa86a28a93481b96909aecce1a8be4ec0a2e6c94917e317903b1f8edac01"
+      url "https://github.com/Huseynteymurzade28/pokeductor/releases/download/v0.7.0/pokeductor-v0.7.0-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "564bd168a304527749f1c06480cbdcf90484fbfa15bdcdad437d25fea2cafdf8"
     end
     on_intel do
-      url "https://github.com/Huseynteymurzade28/pokeductor/releases/download/v0.6.0/pokeductor-v0.6.0-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "dc032ad7c44d459237275273421f4b7c568478c43dc18422bf3168092b60a8a6"
+      url "https://github.com/Huseynteymurzade28/pokeductor/releases/download/v0.7.0/pokeductor-v0.7.0-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "d5823d38ed6e17261a82604b4c993cb6967973f9aede99a73c82a5a73fa43384"
     end
   end
 
