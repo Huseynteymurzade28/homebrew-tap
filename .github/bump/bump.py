@@ -28,12 +28,15 @@ OWNER = "Huseynteymurzade28"
 # "release" for anything installed from release assets, or that publishes
 # releases at all: a tag is pushed before its release workflow has uploaded
 # anything, and a formula pointing at assets that do not exist yet would fail
-# to install. flerp has tags and no releases, so tags are all there is.
+# to install. flerp and meloic have tags and no releases, so tags are all
+# there is.
 FORMULAE = {
     "tuiba": ("tuiba", "release"),
     "flerp": ("flerp", "tag"),
     "kizamu": ("Kizamu", "release"),
     "pomtex": ("pomtex", "release"),
+    "butaglyph": ("butaglyph", "release"),
+    "meloic": ("meloic", "tag"),
 }
 
 SEMVER_TAG = re.compile(r"^v(\d+)\.(\d+)\.(\d+)$")

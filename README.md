@@ -16,11 +16,14 @@ or in one step, `brew install huseynteymurzade28/tap/<formula>`.
 | [`flerp`](https://github.com/Huseynteymurzade28/flerp) | TUI for exploring and analyzing text, PDFs and images | Built from source with Rust |
 | [`kizamu`](https://github.com/Huseynteymurzade28/Kizamu) | Terminal typing test: WPM and accuracy | Built from source with Zig 0.16 |
 | [`pomtex`](https://github.com/Huseynteymurzade28/pomtex) | On-demand LaTeX: fetches CTAN packages as documents need them | Built from source with Crystal, completions, man page |
+| [`butaglyph`](https://github.com/Huseynteymurzade28/butaglyph) | Fast prompt for bash, zsh and fish (the command is `buta`) | Prebuilt binary |
+| [`meloic`](https://github.com/Huseynteymurzade28/meloic) | Terminal music player with album covers and waveform | Built from source with Rust |
 
 Nothing here is bumped by hand. `pokeductor` is written by its own release
 workflow on every tagged release. For the others, the Bump workflow checks
-once a day for a new release (a new tag, for flerp), rewrites the formula's
-URLs and checksums, and installs, tests and audits it on macOS and Linux. It
-pushes only the formulae that pass. A failure, or a Kizamu release that needs
-a Zig package the formula does not pin yet, fails the run and is left for a
-look. Every formula is also tested the same way on each pull request.
+once a day for a new release (a new tag, for flerp and meloic), rewrites the
+formula's URLs and checksums, and installs, tests and audits it on macOS and
+Linux. It pushes only the formulae that pass. A failure, or a Kizamu release
+that needs a Zig package the formula does not pin yet, fails the run and is
+left for a look. Every formula is also tested the same way on each pull
+request.

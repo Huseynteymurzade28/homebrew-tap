@@ -1,10 +1,10 @@
 name: Bump
 
-# tuiba, flerp, Kizamu and pomtex release on their own schedules, and nothing
-# in their repositories writes to this one. Once a day this checks each for a
-# newer version, rewrites the formula's URLs and checksums, tests it the way Tests
-# does, and pushes the ones that pass. pokeductor is not checked: its own
-# release workflow writes its formula.
+# tuiba, flerp, Kizamu, pomtex, butaglyph and meloic release on their own
+# schedules, and nothing in their repositories writes to this one. Once a day
+# this checks each for a newer version, rewrites the formula's URLs and
+# checksums, tests it the way Tests does, and pushes the ones that pass.
+# pokeductor is not checked: its own release workflow writes its formula.
 #
 # A formula that fails its tests, or a version this cannot take on its own
 # (Kizamu needing a Zig package the formula does not pin), is left as it was
